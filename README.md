@@ -32,12 +32,6 @@ Configuration Manager Health Evaluation*
 CreateExplorerShellUnelevatedTask*
 
 
-**Modify Network Path**
-
-powershell# Change this line in the script:
-$NetworkPath = "\\your-server\your-share\your-folder"
-
-
 **Add Custom Filters**
 
 powershell# Add to the $ExcludedTaskPrefixes array:
