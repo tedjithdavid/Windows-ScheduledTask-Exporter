@@ -175,20 +175,6 @@ $TaskInfo | Export-Csv -Path $OutputFile -NoTypeInformation -Encoding UTF8
 Write-Host "Scheduled tasks exported to: $OutputFile"
 Write-Host "Total tasks exported: $($TaskInfo.Count)"
 
-# Copy CSV file to network location
-$NetworkPath = "\\igi\root\SCCMSource\Temp"
-try {
-    if (Test-Path $NetworkPath) {
-        $NetworkFile = Join-Path $NetworkPath (Split-Path $OutputFile -Leaf)
-        Copy-Item -Path $OutputFile -Destination $NetworkFile -Force
-        Write-Host "CSV file copied to network location: $NetworkFile"
-    } else {
-        Write-Warning "Network path not accessible: $NetworkPath"
-    }
-} catch {
-    Write-Warning "Failed to copy file to network location: $($_.Exception.Message)"
-}
-
 # Display the first few rows as preview
 Write-Host "`nPreview of exported data:"
 $TaskInfo | Select-Object -First 5 | Format-Table -AutoSize
